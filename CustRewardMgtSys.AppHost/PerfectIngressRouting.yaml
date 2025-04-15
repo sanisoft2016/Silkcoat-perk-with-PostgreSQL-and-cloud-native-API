@@ -1,0 +1,63 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ecommerce-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: nativeapp.demo.com.aspire-dashboard
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: aspire-dashboard
+                port:
+                  number: 18888
+
+    - host: nativeapp.demo.com
+      http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+          service:
+            name: ecommerce-web
+            port:
+              number: 80
+       - path: /api/order
+         pathType: Prefix
+         backend:
+          service:
+            name: ecommerce-orderservice
+            port:
+              number: 80
+       - path: /api/product
+         pathType: Prefix
+         backend:
+          service:
+            name: ecommerce-productservice
+            port:
+              number: 80
+
+    - host: silkcoat-coin-reward.demo.com
+      http:
+       paths:
+       - path: /
+         pathType: Prefix
+         backend:
+          service:
+            name: ecommerce-web
+            port:
+              number: 80
+       - path: /api
+         pathType: Prefix
+         backend:
+          service:
+            name: custrewardmgtsys-api
+            port:
+              number: 80
+
+
+

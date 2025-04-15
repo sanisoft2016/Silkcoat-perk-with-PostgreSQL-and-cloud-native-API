@@ -1,0 +1,9 @@
+resources:
+- silkcoatpostgres
+- custrewardmgtsys-v3-api
+- dashboard.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+

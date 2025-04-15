@@ -1,0 +1,23 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custrewardmgtsys-v2-ui-deployment
+  namespace: default
+  labels:
+    app: custrewardmgtsys-v2-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custrewardmgtsys-v2-ui
+  template:
+    metadata:
+      labels:
+        app: custrewardmgtsys-v2-ui
+    spec:
+      containers:
+        - name: custrewardmgtsys-v2-ui
+          image: sanibesiru/custrewardmgtsys-v2-ui:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80

@@ -1,0 +1,121 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: custrewardmgtsys-v3-api
+  labels:
+    app: custrewardmgtsys-v3-api
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custrewardmgtsys-v3-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: custrewardmgtsys-v3-api
+    spec:
+      containers:
+        - name: custrewardmgtsys-v3-api
+          image: sanibesiru/custrewardmgtsys-v3-api:v3.1.1
+          imagePullPolicy: IfNotPresent  # Change to 'IfNotPresent' for K3s
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: custrewardmgtsys-v3-api-env
+            - secretRef:
+                name: custrewardmgtsys-v3-api-secrets
+          volumeMounts:
+            - name: file-upload-volume
+              mountPath: /app/Resources
+      volumes:
+        - name: file-upload-volume
+          persistentVolumeClaim:
+            claimName: file-upload-volume-claim
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000  # Ensure the container runs as a non-root user
+      terminationGracePeriodSeconds: 180
+      resources:
+        limits:
+          memory: "512Mi"  # Set limits for memory usage
+          cpu: "500m"      # Set limits for CPU usage
+        requests:
+          memory: "256Mi"  # Set requested memory
+          cpu: "250m"      # Set requested CPU
+
+---
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: custrewardmgtsys-v3-api
+spec:
+  type: NodePort
+  selector:
+    app: custrewardmgtsys-v3-api
+
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+    nodePort: 30081
+  type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: file-upload-volume
+spec:
+  capacity:
+    storage: 0.2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    path: /mnt/data/file-upload  # Ensure the VPS has this directory
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: file-upload-volume-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 0.2Gi
+  volumeName: file-upload-volume
+  storageClassName: manual
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: custrewardmgtsys-v3-api-env
+  namespace: default
+data:
+  ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
+  ASPNETCORE_URLS: "http://+:8080"
+  HTTP_PORTS: "8080"
+  OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES: "true"
+  OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES: "true"
+  OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY: "in_memory"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://aspire-dashboard.default.svc.cluster.local:18889"
+  OTEL_SERVICE_NAME: "custrewardmgtsys-v3-api"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: custrewardmgtsys-v3-api-secrets
+  namespace: default
+type: Opaque
+data:
+  ConnectionStrings__silkcoatDb: SG9zdD04Mi4yOS4xNzMuMjMyO1BvcnQ9MzAwMDc7VXNlcm5hbWU9cG9zdGdyZWFkbWluO1Bhc3N3b3JkPTEyMzQ1NkBBYmM7RGF0YWJhc2U9c2lsa2NvYXREYjs=

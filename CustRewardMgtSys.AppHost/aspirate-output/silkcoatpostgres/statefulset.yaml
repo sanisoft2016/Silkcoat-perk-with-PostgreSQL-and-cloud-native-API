@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: silkcoatpostgres
+  labels:
+    app: silkcoatpostgres
+spec:
+  serviceName: "silkcoatpostgres"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: silkcoatpostgres
+  template:
+    metadata:
+      labels:
+        app: silkcoatpostgres
+    spec:
+      containers:
+        - name: silkcoatpostgres
+          image: docker.io/library/postgres:17.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: silkcoatpostgres-env
+            - secretRef:
+                name: silkcoatpostgres-secrets
+          volumeMounts:
+            - name: custrewardmgtsys-apphost-bacb8eff4e-silkcoatpostgres-data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: custrewardmgtsys-apphost-bacb8eff4e-silkcoatpostgres-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi

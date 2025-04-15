@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustRewardMgtSys.Domain", "CustRewardMgtSys.Domain\CustRewardMgtSys.Domain.csproj", "{25AF01D9-D778-4A55-9A68-1D0DACF3820B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustRewardMgtSys.Application", "CustRewardMgtSys.Application\CustRewardMgtSys.Application.csproj", "{6844725E-F198-42C7-BB33-062DA825F1A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustRewardMgtSys.API", "CustRewardMgtSys.API\CustRewardMgtSys.API.csproj", "{7826956A-F575-4D9B-889B-604D6D55D2DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustRewardMgtSys.Infrastructure", "CustRewardMgtSys.Infrastructure\CustRewardMgtSys.Infrastructure.csproj", "{5F7A06CE-B90C-44FE-AE1C-3895C9060B79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustRewardMgtSys.AppHost", "CustRewardMgtSys.AppHost\CustRewardMgtSys.AppHost.csproj", "{AEA05164-4C6F-474D-A353-AC3B569849BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustRewardMgtSys.ServiceDefaults", "CustRewardMgtSys.ServiceDefaults\CustRewardMgtSys.ServiceDefaults.csproj", "{F27C6978-CEB4-4CB9-B50A-CD2B35A35454}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25AF01D9-D778-4A55-9A68-1D0DACF3820B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25AF01D9-D778-4A55-9A68-1D0DACF3820B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25AF01D9-D778-4A55-9A68-1D0DACF3820B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25AF01D9-D778-4A55-9A68-1D0DACF3820B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6844725E-F198-42C7-BB33-062DA825F1A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6844725E-F198-42C7-BB33-062DA825F1A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6844725E-F198-42C7-BB33-062DA825F1A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6844725E-F198-42C7-BB33-062DA825F1A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7826956A-F575-4D9B-889B-604D6D55D2DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7826956A-F575-4D9B-889B-604D6D55D2DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7826956A-F575-4D9B-889B-604D6D55D2DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7826956A-F575-4D9B-889B-604D6D55D2DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F7A06CE-B90C-44FE-AE1C-3895C9060B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F7A06CE-B90C-44FE-AE1C-3895C9060B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F7A06CE-B90C-44FE-AE1C-3895C9060B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F7A06CE-B90C-44FE-AE1C-3895C9060B79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEA05164-4C6F-474D-A353-AC3B569849BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA05164-4C6F-474D-A353-AC3B569849BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA05164-4C6F-474D-A353-AC3B569849BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA05164-4C6F-474D-A353-AC3B569849BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F27C6978-CEB4-4CB9-B50A-CD2B35A35454}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F27C6978-CEB4-4CB9-B50A-CD2B35A35454}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F27C6978-CEB4-4CB9-B50A-CD2B35A35454}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F27C6978-CEB4-4CB9-B50A-CD2B35A35454}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

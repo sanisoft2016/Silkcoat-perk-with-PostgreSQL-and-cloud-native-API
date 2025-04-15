@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+   <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>a58f9c2b-71a5-4e1d-b23f-531b4445d7be</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="C:\tmp\images\AngulaSetup.yaml" Link="AngulaSetup.yaml" />
+    <None Include="C:\tmp\images\custrewardmgtsys-v2-api-configMap.yaml" Link="custrewardmgtsys-v2-api-configMap.yaml" />
+    <None Include="C:\tmp\images\custrewardmgtsys-v2-api-secrets.yaml" Link="custrewardmgtsys-v2-api-secrets.yaml" />
+    <None Include="C:\tmp\images\silkcoatpostgres-db-2nd.yaml" Link="silkcoatpostgres-db-2nd.yaml" />
+    <None Include="C:\tmp\images\VPS-custrewardmgtsys-v2-api with pv and pvc suitable for file upload.yaml" Link="VPS-custrewardmgtsys-v2-api with pv and pvc suitable for file upload.yaml" />
+    <None Include="C:\tmp\vps\configs\k3s-vps.yaml" Link="k3s-vps.yaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustRewardMgtSys.API\CustRewardMgtSys.API.csproj" />
+  </ItemGroup>
+
+</Project>

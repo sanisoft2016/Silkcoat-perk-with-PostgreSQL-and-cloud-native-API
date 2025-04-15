@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: silkcoatpostgres
+spec:
+  type: ClusterIP
+  selector:
+    app: silkcoatpostgres
+  ports:
+  - name: tcp
+    port: 5433
+    targetPort: 5432
