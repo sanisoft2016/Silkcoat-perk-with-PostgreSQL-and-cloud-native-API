@@ -99,10 +99,10 @@ builder.Services.AddScoped<IReportService, ReportService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "naitsPortalUi",//, "http://silkcoat-coin-reward.demo.com", "http://silkcoat-coin-reward-demo-v2.com", http://desktop-baj7ki9/iaslinfopool
+    options.AddPolicy(name: "naitsPortalUi",//https://promo.silkcoatnigeria.com,  http://localhost:4207, "http://silkcoat-coin-reward.demo.com",
                       policy =>
                       {
-                          policy.WithOrigins("https://promo.silkcoatnigeria.com").AllowAnyMethod().AllowAnyHeader();
+                          policy.WithOrigins("http://silkcoat-coin-reward-demo-v2.com").AllowAnyMethod().AllowAnyHeader();
                       });
 });
 

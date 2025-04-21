@@ -302,7 +302,7 @@ namespace CustRewardMgtSys.Application.Service
         {
             try
             {
-                var hasHeEverConsumePin = await Task.Run( () => (_provider.GetService(typeof(IGenericRepository<PaintSubCategory>)) as IGenericRepository<PinConsumption>)
+                var hasHeEverConsumePin = await Task.Run( () => (_provider.GetService(typeof(IGenericRepository<PinConsumption>)) as IGenericRepository<PinConsumption>)
                     .GetAll(c=>c.PainterUserId == userId).FirstOrDefault());
                 
                 if(hasHeEverConsumePin == null)
@@ -371,11 +371,11 @@ namespace CustRewardMgtSys.Application.Service
                                                 ? row.Cell(3).Value.ToString().Trim()
                                                : row.Cell(2).Value.ToString().Trim();
 
-                                var coinVal = row.Cell(5).Value.ToString().Trim();
+                                var coinVal = row.Cell(4).Value.ToString().Trim();
                                 var productName = prodName + " :" + kgOrLt;
                                 if (int.TryParse(coinVal, out int result))
                                 {
-                                    var doesItExist = await Task.Run(() => paintSubCategoryRepo.GetAll(x=> x.SubCatName.ToUpper() == productName.ToUpper()).FirstOrDefault());
+                                    var doesItExist = await Task.Run(() => paintSubCategoryRepo.GetAll(x=> x.PaintMainCategoryId == 1  && x.SubCatName.ToUpper() == productName.ToUpper()).FirstOrDefault());
                                     if (doesItExist == null) 
                                     {
                                         var model = new PaintSubCategory
@@ -416,7 +416,7 @@ namespace CustRewardMgtSys.Application.Service
                                 var productName =prodName + " :" + kgOrLt;
                                 if (int.TryParse(coinVal, out int result))
                                 {
-                                    var doesItExist = await Task.Run(() => paintSubCategoryRepo.GetAll(x => x.SubCatName.ToUpper() == productName.ToUpper()).FirstOrDefault());
+                                    var doesItExist = await Task.Run(() => paintSubCategoryRepo.GetAll(x => x.PaintMainCategoryId == 2 && x.SubCatName.ToUpper() == productName.ToUpper()).FirstOrDefault());
                                     if (doesItExist == null)
                                     {
                                         var model = new PaintSubCategory
@@ -454,7 +454,7 @@ namespace CustRewardMgtSys.Application.Service
                                 var productName =prodName + " :" + kgOrLt;
                                 if (int.TryParse(coinVal, out int result))
                                 {
-                                    var doesItExist = await Task.Run(() => paintSubCategoryRepo.GetAll(x => x.SubCatName.ToUpper() == productName.ToUpper()).FirstOrDefault());
+                                    var doesItExist = await Task.Run(() => paintSubCategoryRepo.GetAll(x => x.PaintMainCategoryId == 3 && x.SubCatName.ToUpper() == productName.ToUpper()).FirstOrDefault());
                                     if (doesItExist == null)
                                     {
                                         var model = new PaintSubCategory
@@ -496,7 +496,7 @@ namespace CustRewardMgtSys.Application.Service
                                 var productName =prodName + " :" + kgOrLt;
                                 if (int.TryParse(coinVal, out int result))
                                 {
-                                    var doesItExist = await Task.Run(() => paintSubCategoryRepo.GetAll(x => x.SubCatName.ToUpper() == productName.ToUpper()).FirstOrDefault());
+                                    var doesItExist = await Task.Run(() => paintSubCategoryRepo.GetAll(x => x.PaintMainCategoryId == 4 && x.SubCatName.ToUpper() == productName.ToUpper()).FirstOrDefault());
                                     if (doesItExist == null)
                                     {
                                         var model = new PaintSubCategory

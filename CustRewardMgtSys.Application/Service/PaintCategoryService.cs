@@ -98,7 +98,7 @@ namespace CustRewardMgtSys.Application.Service
         public async Task<List<EnumDto>> GetAllPaintCategoryForDropDown()
         {
             var itemDiscoveredRepo = _provider.GetService(typeof(IGenericRepository<PaintSubCategory>)) as IGenericRepository<PaintSubCategory>;
-            return await Task.Run(() => itemDiscoveredRepo.GetAll(x=> x.PaintMainCategoryId == 2).Select(x=> new EnumDto { Id = x.Id, Name= x.SubCatName}).OrderBy(x=> x.Name).ToList());
+            return await Task.Run(() => itemDiscoveredRepo.GetAll(x=> x.PaintMainCategoryId == 1).Select(x=> new EnumDto { Id = x.Id, Name= x.SubCatName}).OrderBy(x=> x.Name).ToList());
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CustRewardMgtSys.Infrastructure
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();//http://localhost:60068/  http://localhost:59689/
-            optionsBuilder.UseNpgsql("Host=82.29.173.232;Port=30007;Username=postgreadmin;Password=123456@Abc;Database=silkcoatDb");
+            optionsBuilder.UseNpgsql("Host=127.0.0.1;Port=5433;Username=postgreadmin;Password=123456@Abc$;Database=silkcoatDb2nd");
 
             var context = new AppDbContext(optionsBuilder.Options);
 

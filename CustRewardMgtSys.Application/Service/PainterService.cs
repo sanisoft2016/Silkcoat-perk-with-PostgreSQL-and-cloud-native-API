@@ -18,8 +18,10 @@ namespace CustRewardMgtSys.Application.Service
         }
         public async Task<List<PaintSubCategory>> GetAllPaintCategory()
         {
+            //byte mainCategoryId = 1;
+            //, 
             var itemDiscoveredRepo = _provider.GetService(typeof(IGenericRepository<PaintSubCategory>)) as IGenericRepository<PaintSubCategory>;
-            return await Task.Run(() => itemDiscoveredRepo.GetAll(x=> x.PaintMainCategoryId == 1, IncludeProperties: "PaintMainCategory").OrderBy(x=> x.SubCatName).ToList());
+            return await Task.Run(() => itemDiscoveredRepo.GetAll(x => x.PaintMainCategoryId == 1, IncludeProperties: "PaintMainCategory").OrderBy(x=> x.SubCatName).ToList());
         }
     }
 }
