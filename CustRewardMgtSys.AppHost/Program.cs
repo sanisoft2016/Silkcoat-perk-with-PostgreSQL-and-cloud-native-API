@@ -20,7 +20,7 @@ var username = builder.AddParameter("username","postgreadmin", secret: true);
 
 
 
-var postgres = builder.AddPostgres("silkcoatpostgres", username, password, 5433)
+var postgres = builder.AddPostgres("silkcoatpostgres", username, password)//, 5433
     .WithImageTag("17.0")
     .WithDataVolume(isReadOnly: false)
     .WithPgAdmin();

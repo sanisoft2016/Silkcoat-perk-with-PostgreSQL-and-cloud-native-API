@@ -13,7 +13,7 @@ namespace CustRewardMgtSys.Application.IService
         Task<bool> DeletePaintCategoryById(byte categoryId); 
         Task<List<PaintSubCategory>> GetAllPaintSubCategory();
         Task<List<PaintMainCategory>> GetPaintCategoryId(int categoryId);
-        Task<object> PostPaintCategory(PaintMainCategory state);
+        Task<object> PostPaintCategory(PaintSubCategory state);
         Task<List<EnumDto>> GetAllPaintCategoryForDropDown();
     }
 }

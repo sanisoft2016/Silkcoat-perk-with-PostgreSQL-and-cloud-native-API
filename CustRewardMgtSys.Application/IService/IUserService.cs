@@ -19,6 +19,6 @@ namespace CustRewardMgtSys.Application.IService
         Task<object> ChangePassword(ChangePasswordDto userObj, string userId);
         string GetUserNameByUserId(string userId);
         Task<bool> UploadProducts(string urlString);
-
+        Task<ResponseDto> PainterSelfRegisteration(UserDto userObj);
     }
 }

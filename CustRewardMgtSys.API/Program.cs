@@ -22,7 +22,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddNpgsqlDbContext<AppDbContext>("silkcoatDb");
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+    {
+        // Password settings
+        options.Password.RequireDigit = false;
+        options.Password.RequiredLength = 1;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+        options.Password.RequiredUniqueChars = 1;
+    })
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
@@ -99,10 +108,10 @@ builder.Services.AddScoped<IReportService, ReportService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: "naitsPortalUi",//https://promo.silkcoatnigeria.com,  http://localhost:4207, "http://silkcoat-coin-reward.demo.com",
+    options.AddPolicy(name: "naitsPortalUi",//http://localhost:4207,  http://silkcoat-coin-reward-demo-v2.com, "http://silkcoat-coin-reward.demo.com",
                       policy =>
                       {
-                          policy.WithOrigins("http://silkcoat-coin-reward-demo-v2.com").AllowAnyMethod().AllowAnyHeader();
+                          policy.WithOrigins("https://promo.silkcoatnigeria.com").AllowAnyMethod().AllowAnyHeader();
                       });
 });
 

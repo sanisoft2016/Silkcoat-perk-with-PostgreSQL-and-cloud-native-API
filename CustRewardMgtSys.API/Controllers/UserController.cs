@@ -23,9 +23,29 @@ namespace CustRewardMgtSys.API.Controllers
             _provider = provider;
         }
 
+
+        [HttpPost]
+        [Route("painter-self-registeration")]
+        public async Task<IActionResult> PainterSelfRegisteration([FromBody] UserDto userObj)
+        {
+            var userService = _provider.GetService(typeof(IUserService)) as IUserService;
+            var response = await userService.PainterSelfRegisteration(userObj);
+            if (response.Status == "Success")
+            {
+                var model = new LoginDto
+                {
+                    UserName = userObj.UserName,
+                    Password = userObj.Password
+                };
+                var loginResponse = await userService.Login(model);
+                return Ok(loginResponse);
+            }
+            return Ok(response);
+        }
+
         [HttpPost]
         [Route("register-user")]
-        //[Authorize(Roles = "HeadAdmin,Admin")]
+        [Authorize(Roles = "HeadAdmin,Admin")]
         public async Task<IActionResult> RegisterUser([FromBody] UserDto userObj)
         {
             //var loggedInUserId = GetUserId();
@@ -59,10 +79,7 @@ namespace CustRewardMgtSys.API.Controllers
             var claimsIdentity = (ClaimsIdentity)HttpContext.User.Identity;
             return claimsIdentity.Claims.First(x => x.Type == ClaimTypes.PrimarySid).Value;
         }
-        private object MainAdminUnauthorizedRequestMessageObject()
-        {
-            return new { Status = "Failed", Data = "Failed! You are not authorized to access this location." };
-        }
+       
         [HttpPost]
         [Route("post-change-password")]
         [Authorize(Roles = "HeadAdmin,PaintBuyer,Admin")]

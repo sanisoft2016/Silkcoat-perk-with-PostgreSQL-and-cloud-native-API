@@ -13,21 +13,21 @@
   "includeDashboard": true,
   "useCustomNamespace": false,
   "secrets": {
-    "salt": "EfKDDecxzRMhbJ\u002B8",
-    "hash": "YXSmRuKiuxES7vyWuo8PDW9XFJHzZiK8unt8kGxrP4o=",
+    "salt": "3bxO9exiQaX7QvWe",
+    "hash": "KyaQtcl54/ukcZD4/3ckpFouiOk7cxiEcU4nHgk2v3w=",
     "secrets": {
       "password": {
-        "value": "EfKDDecxzRMhbJ\u002B8lWDOl5ISyBOEEnga3vum13AQm8zZztGgQRQ="
+        "value": "3bxO9exiQaX7QvWePefkRTYocjgI5JjW4U39Mh/gkJBnTZof6UU="
       },
       "username": {
-        "value": "EfKDDecxzRMhbJ\u002B8w3ADtaL5oNaLASSWFemBbDFN24yLivSARxoDJg=="
+        "value": "3bxO9exiQaX7QvWeLOrrg\u002BM/EkH/16ol\u002B4uxel690NA1Cb8/70vSLA=="
       },
       "silkcoatpostgres": {
-        "POSTGRES_PASSWORD": "EfKDDecxzRMhbJ\u002B8lWDOl5ISyBOEEnga3vum13AQm8zZztGgQRQ="
+        "POSTGRES_PASSWORD": "3bxO9exiQaX7QvWePefkRTYocjgI5JjW4U39Mh/gkJBnTZof6UU="
       },
       "silkcoatDb": {},
       "custrewardmgtsys-v3-api": {
-        "ConnectionStrings__silkcoatDb": "EfKDDecxzRMhbJ\u002B8mKl3oCedCqT6qwEwMDxHOQlN24zRi/iNSBQFKRiWAEpBNzg/m0rldr\u002B0yVvdGknMbrnYMC45Z8hE9aoJ/XDX8t\u002BbHnhkAZng1MpoJjTPJGxZ7yCL0weMOzl/Sbn6lZ8ccJNChgEYCJI\u002Bw/996Q=="
+        "ConnectionStrings__silkcoatDb": "3bxO9exiQaX7QvWenWY3Y6YKfiAO4f3fzabkxWa90NBvCLMy4EXUI2YMa6r8KfbeZRDyv0Is3kUTX6puMQO6CCvTrNnQIK16NKuqkzpW76VJr8\u002BWs7U4hDeixxhfdUoal8vJ3SmrMSXiine/Ks5MfmbQVdAVOimSLg=="
       }
     }
   },

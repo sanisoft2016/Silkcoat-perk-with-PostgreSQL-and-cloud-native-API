@@ -102,6 +102,66 @@ namespace CustRewardMgtSys.Application.Service
             return _userManager.FindByIdAsync(userId).Result.UserName;
         }
 
+
+        public async Task<ResponseDto> PainterSelfRegisteration(UserDto userObj)
+        {
+            var response = new ResponseDto();
+            var userExists = await _userManager.FindByNameAsync(userObj.UserName);
+            if (userExists != null)
+            {
+                response.Status = "Failure";
+                response.Data = "User already exists!";
+                return response;
+            }
+            var user = _userManager.Users.Where(u => u.PhoneNumber == userObj.PhoneNumber).FirstOrDefault();
+            if (user != null)
+            {
+                response.Status = "Failure";
+                response.Data = "Phone Number already exists!";
+                return response;
+            }
+            var model = new ApplicationUser();
+            model.UserType = USER_TYPE.PAINT_BUYER;
+            model.Gender = userObj.Gender;
+            model.FirstName = userObj.FirstName;
+            model.LastName = userObj.LastName;
+            model.PhoneNumber = userObj.PhoneNumber;
+            model.UserName = userObj.UserName;
+            model.State = userObj.State;
+            model.Email = userObj.Email;
+            model.Town = userObj.Town;
+            try
+            {
+                var resultStatus = await _userManager.CreateAsync(model, userObj.Password);
+                if (!resultStatus.Succeeded)
+                {
+                    var errorMsgs = "";
+                    var counter = 1;
+                    foreach (var item in resultStatus.Errors)
+                    {
+                        errorMsgs = errorMsgs + " (" + counter + ") " + item.Description;
+                        counter++;
+                    }
+                    response.Status = "Failure";
+                    response.Data = errorMsgs;
+                    return response;
+                }
+
+                if (!await _roleManager.RoleExistsAsync("PaintBuyer"))
+                    await _roleManager.CreateAsync(new IdentityRole("PaintBuyer"));
+                await _userManager.AddToRoleAsync(model, "PaintBuyer");
+                response.Status = "Success";
+                response.Data = "";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                var response1 = new ResponseDto { Status = "Failure", Data = "Sorry unable to complete the process!" };
+                return response1;
+            }
+        }
+
+
         public async Task<object> RegisterUser(UserDto userObj)
         {
             var response = new ResponseDto();

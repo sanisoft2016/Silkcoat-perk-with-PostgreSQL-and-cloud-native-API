@@ -40,27 +40,32 @@ namespace CustRewardMgtSys.Application.Service
             return await Task.Run(() => itemDiscoveredRepo.GetAll().ToList());
         }
 
-        public async Task<object> PostPaintCategory(PaintMainCategory itemDiscovered)
+        public async Task<object> PostPaintCategory(PaintSubCategory paintSubCategory)
         {
-            var itemDiscoveredRepo = _provider.GetService(typeof(IGenericRepository<PaintMainCategory>)) as IGenericRepository<PaintMainCategory>;
+            var paintSubCategoryRepo = _provider.GetService(typeof(IGenericRepository<PaintSubCategory>)) as IGenericRepository<PaintSubCategory>;
 
             try
             {
-                var corridorObjects = await Task.Run(() => itemDiscoveredRepo.GetAll(x => x.CatName.ToUpper() == itemDiscovered.CatName.ToUpper()).FirstOrDefault());
-                if (corridorObjects == null && itemDiscovered.Id == 0)
+                var paintSubCategoryObjects = await Task.Run(() => paintSubCategoryRepo.GetAll(x => x.SubCatName.ToUpper() == paintSubCategory.SubCatName.ToUpper()
+                                    && x.PaintMainCategoryId == paintSubCategory.PaintMainCategoryId).FirstOrDefault());
+
+                if (paintSubCategoryObjects == null && paintSubCategory.Id == 0)
                 {
-                    itemDiscoveredRepo.Add(itemDiscovered);
-                    await itemDiscoveredRepo.SaveAsync();
+                    paintSubCategoryRepo.Add(paintSubCategory);
+                    await paintSubCategoryRepo.SaveAsync();
 
                     var paintCategoryList = await GetAllPaintSubCategory();
                     return new { Status = "Success", Data = paintCategoryList };
                 }
-                else if (itemDiscovered.Id > 0)
+                else if (paintSubCategory.Id > 0)
                 {
-                    if ((corridorObjects == null) ||  (corridorObjects.Id == itemDiscovered.Id))
+                    if ((paintSubCategoryObjects == null) ||  (paintSubCategoryObjects.Id == paintSubCategory.Id))
                     {
-                        itemDiscoveredRepo.Update(itemDiscovered);
-                        await itemDiscoveredRepo.SaveAsync();
+                        paintSubCategory.SubCatName = paintSubCategory.SubCatName;
+                        paintSubCategory.CoinValue = paintSubCategory.CoinValue;
+                        paintSubCategoryRepo.Update(paintSubCategory);
+                        await paintSubCategoryRepo.SaveAsync();
+
                         var paintCategoryList = await GetAllPaintSubCategory();
                         return new { Status = "Success", Data = paintCategoryList };
                     }

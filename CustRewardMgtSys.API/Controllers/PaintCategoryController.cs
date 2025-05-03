@@ -85,7 +85,7 @@ namespace CustRewardMgtSys.API.Controllers
         }
 
         [HttpPost("create-category")]
-        public async Task<IActionResult> PostPaintCategory(PaintMainCategory PaintMainCategory)
+        public async Task<IActionResult> PostPaintCategory(PaintSubCategory PaintMainCategory)
         {
             var paintCategoryService = _provider.GetService(typeof(IPaintCategoryService)) as IPaintCategoryService;
             var returnObject = await paintCategoryService.PostPaintCategory(PaintMainCategory);

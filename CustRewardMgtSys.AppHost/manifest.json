@@ -43,7 +43,6 @@
           "scheme": "tcp",
           "protocol": "tcp",
           "transport": "tcp",
-          "port": 5433,
           "targetPort": 5432
         }
       }
